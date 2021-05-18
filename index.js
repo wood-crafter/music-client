@@ -2,20 +2,29 @@ const API_ROOT = 'http://localhost:8082'
 
 const PREVIEW_CONTAINER_ID = 'preview-container'
 
+document.querySelector(`#logout`).addEventListener('click', () => {
+  localStorage.removeItem('token')
+  window.location = '/login.html'
+  return
+})
+
 document.querySelector(`#upload`).addEventListener('submit', e => {
   e.preventDefault()
 
-  let fileUpload = document.querySelector(`#fileUpload`).files[0]
-  // let formData = new FormData()
+  const songName = document.querySelector('#songName').value
+  const fileUpload = document.querySelector(`#fileUpload`).files[0]
 
-  // formData.append("fileUpload", fileUpload)
-  apiFetch('/upload', 'POST', fileUpload).then(res => {
+  let formData = new FormData()
+  formData.append("songName", songName)
+  formData.append("song", fileUpload)
+
+  apiFetch('/upload', 'POST', formData).then(res => {
     const p = document.createElement('p')
     p.innerText = res.statusText
     document.querySelector("#uploadStatus").appendChild(p)
   }).catch(res => {
     const p = document.createElement('p')
-    p.innerText = 'Ah!'
+    p.innerText = 'Some thing went wrong!'
     document.querySelector("#uploadStatus").appendChild(p)
   })
 })

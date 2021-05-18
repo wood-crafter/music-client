@@ -1,12 +1,12 @@
 const API_ROOT = 'http://localhost:8082'
 
-document.querySelector(`#login`).addEventListener('submit', (e) => {
+document.querySelector(`#signup`).addEventListener('submit', (e) => {
   e.preventDefault()
   const username = document.querySelector(`#username`).value
   const password = document.querySelector(`#password`).value
   const body = { username: username, password: password }
 
-  fetch(`${API_ROOT}/login`, {
+  fetch(`${API_ROOT}/signup`, {
     method: 'POST',
     body: JSON.stringify(body),
     headers: {
@@ -23,8 +23,8 @@ document.querySelector(`#login`).addEventListener('submit', (e) => {
       }
 
       const p = document.createElement('p')
-      p.innerText = 'Wrong name or password'
+      p.innerText = 'User name existed'
       document.querySelector(`#password`).value = ''
-      document.querySelector("#loginFailed").appendChild(p)
+      document.querySelector("#signupFailed").appendChild(p)
     })
 })

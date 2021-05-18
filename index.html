@@ -14,12 +14,17 @@
 </head>
 
 <body>
+  <button id="logout">Log out</button>
+
   <ul id="songs"></ul>
   <div id="preview-container"></div>
-  <form action="fileupload" method="post" enctype="multipart/form-data", id="upload">
-  <input type="file" name="filetoupload" id="fileUpload"><br>
-  <input type="submit">
+
+  <form action="fileupload" method="post" enctype="multipart/form-data" , id="upload">
+    <input id="songName" type="text" placeholder="Enter song name" name="songName" required>
+    <input type="file" name="filetoupload" id="fileUpload" required><br>
+    <input type="submit">
   </form>
+
   <div id="uploadStatus"></div>
 
   <script src="index.js"></script>
